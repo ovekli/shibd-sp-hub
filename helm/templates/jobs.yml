@@ -20,8 +20,16 @@ spec:
         - -c
         args:
           -
-           'curl -kL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5;
-            echo Hello;'
+           'curl -skL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5;
+            tar -xvf /tmp/idp.tgz -C ./tmp/ --strip-components=1
+            /tmp/bin/install.sh \
+              --noPrompt \
+              -t /opt/shibboleth-idp \
+              -h idp-intern.klinghed.se \
+              -e idp-intern.klinghed.se/idp \
+              -kp qwe123 \
+              -sp qwe123
+           ' 
         image: "{{ .Values.image.address }}:{{ .Values.image.tag }}" 
         imagePullPolicy: IfNotPresent
         name: {{ .Release.Name }}-job
