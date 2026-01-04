@@ -28,7 +28,8 @@ spec:
               -h idp-intern.klinghed.se \
               -e idp-intern.klinghed.se/idp \
               -kp qwe123 \
-              -sp qwe123
+              -sp qwe123 \
+              --scope klinghed.se
            ' 
         image: "{{ .Values.image.address }}:{{ .Values.image.tag }}" 
         imagePullPolicy: IfNotPresent
