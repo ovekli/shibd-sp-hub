@@ -36,8 +36,15 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: opt/shibboleth-idp
+          name: {{ .Release.Name }}-pvc        
       dnsPolicy: ClusterFirst
       restartPolicy: Never
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      volumes:
+      - name: {{ .Release.Name }}-pvc
+        persistentVolumeClaim:
+          claimName:  {{ .Release.Name }}      
