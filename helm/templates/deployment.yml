@@ -27,6 +27,13 @@ spec:
       containers:
       - image: "{{ .Values.image.address }}:{{ .Values.image.tag }}"    
         imagePullPolicy: IfNotPresent
+        env:
+          - name: TZ
+            value: Europe/Stockholm    
+          - name: LANG
+            value: sv_SE.utf8
+          - name: JAVA_OPTIONS
+            value: -Didp.home=/opt/shibboleth-idp -Didp.keystore.pw={{ .Values.idp.keystore.pw }} -Didp.truststore.pw={{ .Values.idp.truststore.pw }}              
         name: {{ .Release.Name }}
         ports:
         - containerPort: 8080
