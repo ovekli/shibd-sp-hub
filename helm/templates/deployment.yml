@@ -38,14 +38,14 @@ spec:
         terminationMessagePolicy: File  
         volumeMounts:
         - mountPath: opt/shibboleth-idp
-          name: {{ .Release.Name }}
+          name: {{ .Release.Name }}-pvc
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: {{ .Release.Name }}
+      - name: {{ .Release.Name }}-pvc
         persistentVolumeClaim:
-          claimName: {{ .Values.pvc.name }}
+          claimName:  {{ .Release.Name }}
 status: {}
