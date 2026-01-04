@@ -16,7 +16,11 @@ spec:
     spec:
       containers:
       - command:
-        - curl -kL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5
+        - /bin//bash
+        - -c
+        - |
+           'curl -kL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5
+            echo Hello'
         image: "{{ .Values.image.address }}:{{ .Values.image.tag }}" 
         imagePullPolicy: IfNotPresent
         name: {{ .Release.Name }}-job
