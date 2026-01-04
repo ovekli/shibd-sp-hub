@@ -21,7 +21,7 @@ spec:
         args:
           -
            'curl -skL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5/shibboleth-identity-provider-5.1.6.tar.gz;
-            tar -xvf /tmp/idp.tgz -C ./tmp/ --strip-components=1
+            tar -xvf /tmp/idp.tgz -C ./tmp/ --strip-components=1;
             /tmp/bin/install.sh \
               --noPrompt \
               -t /opt/shibboleth-idp \
