@@ -45,7 +45,7 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: {{ .Values.pvc.name }}
+      - name: {{ .Release.Name }}
         persistentVolumeClaim:
           claimName: {{ .Values.pvc.name }}
 status: {}
