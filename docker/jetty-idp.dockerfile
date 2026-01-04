@@ -8,6 +8,8 @@ COPY java-idp-jetty-base/src/main/resources/net/shibboleth/idp/module/jetty/jett
 COPY java-idp-jetty-base/src/main/resources/net/shibboleth/idp/module/jetty/jetty-base/webapps/idp.xml $JETTY_BASE/webapps/
 
 USER root
-RUN chmod 664 /etc/passwd && \
+RUN apt-get update -y && \
+apt-get install vim -y && \
+chmod 664 /etc/passwd && \
 chmod 777 /var/lib/jetty
 USER jetty

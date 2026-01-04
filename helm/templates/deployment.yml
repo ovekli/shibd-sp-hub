@@ -33,7 +33,7 @@ spec:
           - name: LANG
             value: sv_SE.utf8
           - name: JAVA_OPTIONS
-            value: -Didp.home=/opt/shibboleth-idp -Didp.keystore.pw={{ .Values.idp.keystore.pw }} -Didp.truststore.pw={{ .Values.idp.truststore.pw }}              
+            value: -Didp.home=/opt/shibboleth-idp -Didp.keystore.pw={{ .Values.idp.keystore.pw }} -Didp.truststore.pw={{ .Values.idp.truststore.pw }} -Didp.logfiles=/opt/shibboleth-logs         
         name: {{ .Release.Name }}
         ports:
         - containerPort: 8080
@@ -46,6 +46,8 @@ spec:
         volumeMounts:
         - mountPath: opt/shibboleth-idp
           name: {{ .Release.Name }}-pvc
+        - mountPath: opt/shibboleth-logs
+          name: {{ .Release.Name }}-logs
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -55,4 +57,6 @@ spec:
       - name: {{ .Release.Name }}-pvc
         persistentVolumeClaim:
           claimName:  {{ .Release.Name }}
+      -name: {{ .Release.Name }}-logs
+         emptyDir: {} # Default uses node disk    
 status: {}
