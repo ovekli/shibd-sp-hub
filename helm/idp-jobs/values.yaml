@@ -1,0 +1,11 @@
+image:
+  address: custom-registry-intern.klinghed.se/shibd/shibd-idp
+  tag: 1.0.5
+pvc:
+ size: 256Mi
+idp:
+  keystore:
+    pw: qwe123
+  truststore:
+    pw: qwe123   
+  

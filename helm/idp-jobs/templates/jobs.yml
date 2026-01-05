@@ -29,7 +29,8 @@ spec:
               -e idp-intern.klinghed.se/idp \
               -kp {{ .Values.idp.keystore.pw }} \
               -sp {{ .Values.idp.keystore.pw }} \
-              --scope klinghed.se
+              --scope klinghed.se;
+              /opt/shibboleth-idp/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/scripting/2.0.0/idp-plugin-nashorn-jdk-dist-2.0.0.tar.gz
            ' 
         image: "{{ .Values.image.address }}:{{ .Values.image.tag }}" 
         imagePullPolicy: IfNotPresent
