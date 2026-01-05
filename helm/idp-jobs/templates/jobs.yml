@@ -20,7 +20,11 @@ spec:
         - -c
         args:
           -
-           'curl -skL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5/shibboleth-identity-provider-5.1.6.tar.gz;
+           'if /opt/shibboleth-idp$ bin/version.sh; then
+             echo "INFO: Identity Provider already installed."
+             exit;
+           else  
+           curl -skL -o /tmp/idp.tgz https://shibboleth.net/downloads/identity-provider/latest5/shibboleth-identity-provider-5.1.6.tar.gz;
             tar -xvf /tmp/idp.tgz -C /tmp --strip-components=1;
             /tmp/bin/install.sh \
               --noPrompt \
@@ -30,7 +34,7 @@ spec:
               -kp {{ .Values.idp.keystore.pw }} \
               -sp {{ .Values.idp.keystore.pw }} \
               --scope klinghed.se;
-              /opt/shibboleth-idp/bin/plugin.sh --noPrompt -i https://shibboleth.net/downloads/identity-provider/plugins/scripting/2.0.0/idp-plugin-nashorn-jdk-dist-2.0.0.tar.gz
+            fi 
            ' 
         image: "{{ .Values.image.address }}:{{ .Values.image.tag }}" 
         imagePullPolicy: IfNotPresent
@@ -40,7 +44,7 @@ spec:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: opt/shibboleth-idp
-          name: {{ .Release.Name }}-pvc        
+          name: {{ .Release.Name }}-pvc
       dnsPolicy: ClusterFirst
       restartPolicy: Never
       schedulerName: default-scheduler
