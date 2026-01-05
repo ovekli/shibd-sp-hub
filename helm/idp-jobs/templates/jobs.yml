@@ -20,7 +20,7 @@ spec:
         - -c
         args:
           -
-           'if /opt/shibboleth-idp$ bin/version.sh; then
+           'if /opt/shibboleth-idp/bin/version.sh; then
              echo "INFO: Identity Provider already installed."
              exit;
            else  
